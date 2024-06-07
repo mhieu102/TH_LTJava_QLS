@@ -1,16 +1,15 @@
-<!--
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <th:book th:replace="layout :: link-css"></th:book>
-    <title>Add Book</title>
+    <title>Thêm Sách</title>
 </head>
 <body>
 <th:book th:replace="layout :: header"></th:book>
 <div class="container">
-    <h1>Add Book</h1>
-    <from th:action="@{/books/add}" th:object="${book}" method="post">
+    <h1>Thêm Sách</h1>
+    <form th:action="@{/books/add}" th:object="${book}" method="post">
         <div class="col-6 mb-3">
             <label class="form-label" for="id">Mã sách:</label>
             <input class="form-control" type="text" th:field="*{id}" id="id">
@@ -33,12 +32,13 @@
         </div>
         <div class="col-6 mb-3">
             <label class="form-label" for="category">Danh mục:</label>
-            <input class="form-control" type="text" th:field="*{category}" id="category">
+            <select class="form-control" th:field="*{category}" id="category">
+                <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+            </select>
             <span th:if="${#fields.hasErrors('category')}" th:errors="*{category}" class="text-danger"></span>
         </div>
         <input type="submit" class="btn btn-primary" value="Thêm mới">
-
-    </from>
+    </form>
 </div>
 </body>
-</html>-->
+</html>

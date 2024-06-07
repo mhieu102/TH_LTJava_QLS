@@ -1,7 +1,5 @@
 package com.example.TH_LTJava_QLS.Controller;
 
-
-
 import com.example.TH_LTJava_QLS.Model.Book;
 import com.example.TH_LTJava_QLS.services.BookService;
 import com.example.TH_LTJava_QLS.services.CategoryService;
@@ -25,20 +23,21 @@ public class BookController {
     private CategoryService categoryService;
 
     @GetMapping
-    public String showAllBooks(Model model){
+    public String showAllBooks(Model model) {
         List<Book> books = bookService.getAllBooks();
         model.addAttribute("books", books);
         return "book/list";
     }
 
     @GetMapping("/add")
-    public  String addBookFrom(Model model){
-        model.addAttribute("book",new Book());
-        model.addAttribute("category", categoryService.getAllCategories());
+    public String showAddBookForm(Model model) {
+        model.addAttribute("book", new Book());
+        model.addAttribute("categories", categoryService.getAllCategories());
         return "book/add";
     }
+
     @PostMapping("/add")
-    public String addBook(@ModelAttribute("book")Book book){
+    public String addBook(@ModelAttribute("book") Book book) {
         bookService.addBook(book);
         return "redirect:/books";
     }
