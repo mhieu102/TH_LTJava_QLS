@@ -12,10 +12,6 @@ public class BookService {
     @Autowired
     private IBookRepository bookRepository;
 
-    public List<Book> GetAllBooks(){
-        return bookRepository.findAll();
-    }
-
     public Book getBookById(Long id){
         return bookRepository.findById(id).orElse(null);
     }
