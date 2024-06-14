@@ -1,5 +1,6 @@
 package com.example.TH_LTJava_QLS.services;
 
+import com.example.TH_LTJava_QLS.Model.Book;
 import com.example.TH_LTJava_QLS.Model.Category;
 import com.example.TH_LTJava_QLS.Repository.ICategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,4 +28,12 @@ public class CategoryService {
     public void deleteCategory(Long id){
         categoryRepository.deleteById(id);
     }
+
+    public void addCategory(Category category){
+        categoryRepository.save(category);
+    }
+    public void updateCategory(Category category){ categoryRepository.save(category);
+    }
+
+
 }
