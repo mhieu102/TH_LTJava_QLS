@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Bài thực hành tuần 3 </title>
@@ -21,22 +21,30 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/books">List Book</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="/books/add">Add Book</a></li>
-                </ul>
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/categories">List Category</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="/categories/add">Add Category</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/books/add">Add Book</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/categories/add">Add Category</a>
+                    </li>
+
+                    <li sec:authorize="isAuthenticated()">
+                        <form th:action="@{/logout}" method="post">
+                            <button class="btn btn-outline-danger" type="submit">Logout</button>
+                        </form>
+                    </li>
+                    <li sec:authorize="!isAuthenticated()">
+                        <a class="btn btn-outline-primary" href="/login">Login</a>
+                    </li>
                 </ul>
             </div>
-
         </div>
-
     </nav>
-
 </header>
-<div th:insert="~{::${content}}"></div>
+
 <footer th:fragment="footer">
     <script th:src="@{/js/bootstrap.min.js}"></script>
 </footer>

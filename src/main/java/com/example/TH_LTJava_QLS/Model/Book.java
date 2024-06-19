@@ -1,6 +1,8 @@
 package com.example.TH_LTJava_QLS.Model;
 
 import com.example.TH_LTJava_QLS.Validator.annotation.ValidCategoryId;
+import com.example.TH_LTJava_QLS.Validator.annotation.ValidUserId;
+import com.example.TH_LTJava_QLS.Validator.annotation.ValidUsername;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -27,7 +29,12 @@ public class Book {
     private Double price;
 
     @ManyToOne
-    @JoinColumn(name ="category_id")
+    @JoinColumn(name ="category_id", referencedColumnName = "id")
     @ValidCategoryId
     private Category category;
+
+    @ManyToOne
+    @JoinColumn(name ="user_id", referencedColumnName = "id")
+    @ValidUserId
+    private User user;
 }
